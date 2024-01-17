@@ -1,0 +1,28 @@
+.items {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 80%;
+  /* max-width: 1400px; */
+  margin: 70px auto 0;
+}
+.child{
+
+margin: 1%;
+    border: 3px inset rgba(0, 0, 0, 0.774);
+    padding:5px;
+    border-radius: 2%;
+    background-color: rgb(255, 255, 255);
+    
+}
+.heading{
+    display: flex;
+   justify-content: center;
+}
+.btn{
+  display: flex;
+  align-items: center;
+}
+
+
+

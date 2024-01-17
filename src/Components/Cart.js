@@ -1,11 +1,17 @@
 import React from "react";
-const productsArr = [
+import "./Cart.css";
+import { Button, Card, Row, Col } from "react-bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+const cartElements = [
   {
     title: "Colors",
 
     price: 100,
 
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+
+    quantity: 2,
   },
 
   {
@@ -14,6 +20,8 @@ const productsArr = [
     price: 50,
 
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+
+    quantity: 3,
   },
 
   {
@@ -22,25 +30,47 @@ const productsArr = [
     price: 70,
 
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-  },
 
-  {
-    title: "Blue Color",
-
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+    quantity: 1,
   },
 ];
+const Cart = () => {
+  return (
+    <React.Fragment>
+      {cartElements.map(item=>{return(
 
-function Cart() {
-  return <div>
-    <ul>
-
-   {productsArr.map((item)=> <li> {item.title} <img src={item.imageUrl}></img></li>
-    )}
-    </ul>
-  </div>;
-}
+        <Card className="OuterCard">
+        <Card.Body>
+          <Row>
+            <Col xs={12} md={4}>
+              <Card.Img src={item.imageUrl} />
+            </Col>
+            <Col xs={12} md={6}>
+              
+              <div>
+                
+                <Card.Title>{item.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  ${item.price}
+                </Card.Subtitle>
+                
+              </div>
+              <Card.Text>
+                Quantity:{item.quantity}
+                <br />
+                <Button className="btn btn-danger">Remove from cart</Button>
+                {/* <Button className="btn btn-secondary">+</Button>
+                <Button className="btn btn-primary"> -</Button> */}
+              </Card.Text>
+            </Col>
+            
+          </Row>
+          
+        </Card.Body>
+      </Card>
+)})}
+    </React.Fragment>
+  );
+};
 
 export default Cart;

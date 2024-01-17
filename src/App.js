@@ -1,11 +1,17 @@
+import Store from "./Components/Store";
 import Cart from "./Components/Cart";
-function App() {
+import {useState} from 'react'
+import Header from "./Components/Header";
+export default function App() {
+
+  const openCart=()=>{
+
+  }
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <Cart/>
+     <Header/>
+     {/* <Store/> */}
+     <Cart/>
     </div>
   );
 }
-
-export default App;
