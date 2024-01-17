@@ -1,24 +1,24 @@
-.Card.Text{
-    display: flex-start;
-  
+.Card.Text {
+  display: flex-start;
+
   /* justify-content: start; */
-  }
-  .OuterCard.card{
-    /* width: '90%';  */
-    display: flex;
-margin-left: 10%;
-margin-right: 10%;
-      align-items:center;
-      justify-content: center ; 
-      flex-direction:row;
-  }
-  .card-img{
-    width: 8rem ;
-    height:8rem;
-  }
-  .Card.Body{
-    width: 8rem ;
-    height:8rem;
-     display: flex;
-      justify-content:center; 
-  }
+}
+.OuterCard.card {
+  /* width: '90%';  */
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.card-img {
+  width: 8rem;
+  height: 8rem;
+}
+.Card.Body {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+}
