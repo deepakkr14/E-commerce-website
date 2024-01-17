@@ -1,5 +1,7 @@
 import React from "react";
-import './Store.css'
+import { useContext } from "react";
+import  classes from"./Store.module.css";
+import CartContext from "./Stores/cartContext";
 import { Button } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -75,24 +77,22 @@ const productsArr = [
 ];
 
 function Cart() {
+  const crtctx=useContext(CartContext)
   return (
-    <React.Fragment >
-      <h1 className="heading">Store</h1>
-    <div className="items">
-
+    <React.Fragment>
+      <h1 className={classes.heading}>Store</h1>
+      <div className={classes.items}>
         {productsArr.map((item) => (
-          <div key={Math.random()} className="child">
-             <img className="img" src={item.imageUrl} alt={item.title}></img>
-             <h3>{item.title}</h3>
-             <div className="btn">
-
-             <h3>${item.price}</h3>
-             <Button>Add to cart</Button>
-             </div>
+          <div key={Math.random()} className={classes.child}>
+            <img className="img" src={item.imageUrl} alt={item.title}></img>
+            <h3>{item.title}</h3>
+            <div className={classes.btn}>
+             <div> <h4>${item.price}</h4></div>
+             <div>  <Button className="btn btn-secondary" onClick={()=>crtctx.AddItems(item)}>Add to cart</Button></div>
+            </div>
           </div>
         ))}
-    
-        </div>
+      </div>
     </React.Fragment>
   );
 }
