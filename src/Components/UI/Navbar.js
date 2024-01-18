@@ -11,7 +11,7 @@ const Navigation = (props) => {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="#home">Generic</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/home">Generic</Navbar.Brand>
         <Nav className="me-auto">
         <Nav.Link as={NavLink} to="/about">About Us</Nav.Link>
         <Nav.Link as={NavLink} to="/">Store</Nav.Link>
