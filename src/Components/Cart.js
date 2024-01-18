@@ -2,7 +2,7 @@ import React from "react";
 import CartProvider from "./Stores/cartContext";
 import "./Cart.css";
 import { useContext } from "react";
-import { Button, Card, Row, Col } from "react-bootstrap";
+import { Button, Card, Row, Col, Form, InputGroup } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 const cartElements = [
@@ -17,42 +17,50 @@ const cartElements = [
   },
 ];
 const Cart = () => {
-  const cartctx=useContext(CartProvider)
-  console.log(cartctx)
+  const cartctx = useContext(CartProvider);
+  console.log(cartctx);
   return (
     <React.Fragment>
-      {cartctx.CartItems.map(item=>{return(
+      {cartctx.CartItems.map((item) => {
+        return (
+          <Card  className="OuterCard ">
+            <Card.Body>
+              <Row>
+                <Col xs={12} md={4}>
+                  <Card.Img src={item.item.imageUrl} />
+                </Col>
+                <Col xs={12} md={2}>
+                  <div>
+                    <Card.Title>{item.item.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      ${item.item.price}
+                    </Card.Subtitle>
+                  </div>
+                  <Card.Text>
+                    <Button className="btn btn-danger btn-sm">
+                      Remove from cart
+                    </Button>
+                    <Row className="quantity">
+                      <InputGroup size="sm" className="mt-1 ">
+                        <Button variant="outline-secondary  btn-sm ">+</Button>
 
-        <Card className="OuterCard">
-        <Card.Body>
-          <Row>
-            <Col xs={12} md={4}>
-              <Card.Img src={item.item.imageUrl} />
-            </Col>
-            <Col xs={12} md={6}>
-              
-              <div>
+                        <Form.Control
+                          placeholder={` Quantity: ${item.quantity}`}
+                          disabled
+                        />
+                        <Button variant="outline-secondary  btn-sm">-</Button>
+                      </InputGroup>
+                    </Row>
+                  </Card.Text>
+                </Col>
+                <Col>
                 
-                <Card.Title>{item.item.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  ${item.item.price}
-                </Card.Subtitle>
-                
-              </div>
-              <Card.Text>
-                Quantity:{item.quantity}
-                <br />
-                <Button className="btn btn-danger">Remove from cart</Button>
-                {/* <Button className="btn btn-secondary">+</Button>
-                <Button className="btn btn-primary"> -</Button> */}
-              </Card.Text>
-            </Col>
-            
-          </Row>
-          
-        </Card.Body>
-      </Card>
-)})}
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        );
+      })}
     </React.Fragment>
   );
 };
