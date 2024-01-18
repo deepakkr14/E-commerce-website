@@ -1,6 +1,7 @@
 import Store from "./Components/Store";
 import Cart from "./Components/Cart";
 import Home from './Components/Home'
+import Movies from './Components/Fetch'
 import CartContext from "./Components/Stores/contextProvider";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ export default function App() {
        
         <Routes>
           <Route path="/" element={<Store/>} />
+          <Route path="/movies" element={<Movies/>} />
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/home" element={<Home/>} />

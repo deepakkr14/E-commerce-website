@@ -12,10 +12,11 @@ const Navigation = (props) => {
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand as={NavLink} to="/home">Generic</Navbar.Brand>
-        <Nav className="me-auto">
+        <Nav className="justify-content-center md flex-grow-1 pe-2">
         <Nav.Link as={NavLink} to="/about">About Us</Nav.Link>
         <Nav.Link as={NavLink} to="/">Store</Nav.Link>
         <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>
+        <Nav.Link as={NavLink} to="/movies">Movies</Nav.Link>
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Store</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link> */}
