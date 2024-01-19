@@ -7,21 +7,26 @@ const MoviesContent = () => {
   const [error, setError] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
 
-const fetchData = async () => {
+  const fetchData = async () => {
     try {
-      const response = await fetch("https://swapi.dev/api/films");
+      const response = await fetch(
+        "https://react-api-backend-dc22b-default-rtdb.firebaseio.com/movies.json"
+      );
       if (!response.ok) {
-    
         throw new Error("Could not get data");
       }
-      const data = await response.json();
-      const transformedData = data.results.map((item) => ({
-        id: item.episode_id,
-        date: item.release_date,
-        title: item.title,
-        director: item.director,
-      }));
-      setMovies(transformedData);
+      const Newdata = await response.json();
+      const AddedMovies = [];
+      for (const key in Newdata) {
+        AddedMovies.push({
+          id: key,
+          title: Newdata[key].Movie,
+          director: Newdata[key].Director,
+          date: Newdata[key].Date,
+        });
+      }
+
+      setMovies(AddedMovies);
       setLoading(false);
       setError(false);
     } catch (error) {
@@ -31,17 +36,13 @@ const fetchData = async () => {
     }
   };
   useEffect(() => {
-    
+    console.log('use effect running')
     if (!error) {
-   
       fetchData();
     }
     if (error) {
-   
-      const id = setInterval(
-        fetchData()
-        , 5000);
-        console.log("set interval running");
+      const id = setInterval(fetchData(), 5000);
+      console.log("set interval running");
       setIntervalId(id);
     }
     // Cleanup function
@@ -53,32 +54,50 @@ const fetchData = async () => {
       }
     };
   }, [error]);
-  
+
   const stopInterval = useCallback(() => {
     clearInterval(intervalId);
     setIntervalId(null);
     setLoading(false);
   }, [intervalId]);
+  const deleteMovie =async(id)=>{
+   try{
+    const url = `https://react-api-backend-dc22b-default-rtdb.firebaseio.com/movies/${id}.json`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+    });
+  alert('movie deleted')
+  fetchData()
+   }catch(error){
+    console.error('Error:', error.message);
+  } 
 
-  const movieList=useMemo(()=> ( <ul className="my-5">
-  {Movies.map((item) => (
-    // <div>
-    <li
-      key={item.id}
-      className="d-flex justify-content-between pt-4   border-bottom"
-    >
-      <span>{item.date} </span>
-      <span>{item.director} </span>
-      <span>{item.title}</span>
-      <span>
-        <Button className="mb-3">Buy Tickets</Button>
-      </span>
-    </li>
-  ))}
-</ul>),[Movies])
-// const viewform=()=>{
-// return <MovieAddForm/>
-// }
+  }
+  const movieList = useMemo(
+    () => (
+      <ul className="my-5">
+        {Movies.map((item) => (
+          // <div>
+          <li
+            key={item.id}
+            className="d-flex justify-content-between pt-4   border-bottom"
+          >
+            <span>{item.date} </span>
+            <span>{item.director} </span>
+            <span>{item.title}</span>
+            <span>
+              {/* <Button className="mb-3">Buy Tickets</Button> */}
+              <Button className="mb-3" onClick={()=>deleteMovie(item.id)}>Delete</Button>
+            </span>
+          </li>
+        ))}
+      </ul>
+    ),
+    [Movies]
+  );
+  // const viewform=()=>{
+  // return <MovieAddForm/>
+  // }
   return (
     <div>
       {/* <Button onClick={viewform}>add new movie</Button> */}

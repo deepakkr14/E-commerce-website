@@ -12,7 +12,7 @@ const MovieAddForm = () => {
   const NameRef = useRef();
   const DirectorRef = useRef();
   const DateRef = useRef();
-  const submitHandler = (event) => {
+  async function submitHandler(event)  {
     event.preventDefault();
     const MovieName = NameRef.current.value;
     const DirectorName = DirectorRef.current.value;
@@ -24,6 +24,24 @@ const MovieAddForm = () => {
       id: Math.random().toString(),
     };
     console.log(userData);
+    try {
+        const response = await fetch('https://react-api-backend-dc22b-default-rtdb.firebaseio.com/movies.json', {
+          method: 'POST',
+          body: JSON.stringify(userData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to add movie.');
+        }
+  
+        const data = await response.json();
+        console.log('Data:', data);
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
   };
   return (
     <Container>
