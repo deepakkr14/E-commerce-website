@@ -1,7 +1,7 @@
 import React from 'react'
 import { useContext } from "react";
 import CartContext from "../Stores/cartContext";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Container, Navbar, Nav, Button,Badge} from "react-bootstrap";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +17,7 @@ const Navigation = (props) => {
         <Nav.Link as={NavLink} to="/">Store</Nav.Link>
         <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>
         <Nav.Link as={NavLink} to="/movies">Movies</Nav.Link>
+        <Nav.Link as={NavLink} to="/addMovie">Add Movies</Nav.Link>
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Store</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link> */}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Button, Container, Spinner } from "react-bootstrap";
+// import MovieAddForm from "./MovieAddForm";
 const MoviesContent = () => {
   const [Movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +9,7 @@ const MoviesContent = () => {
 
 const fetchData = async () => {
     try {
-      const response = await fetch("https://swapi.dev/api/fils");
+      const response = await fetch("https://swapi.dev/api/films");
       if (!response.ok) {
     
         throw new Error("Could not get data");
@@ -75,10 +76,13 @@ const fetchData = async () => {
     </li>
   ))}
 </ul>),[Movies])
-
+// const viewform=()=>{
+// return <MovieAddForm/>
+// }
   return (
     <div>
-      {!loading && !intervalId && <h2>NO data found</h2>}
+      {/* <Button onClick={viewform}>add new movie</Button> */}
+      {!loading && !intervalId && !Movies && <h2>NO data found</h2>}
       {error && (
         <h2>
           Could not get data <strong>Retrying</strong>

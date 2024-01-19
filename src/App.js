@@ -5,10 +5,11 @@ import Movies from './Components/Fetch'
 import CartContext from "./Components/Stores/contextProvider";
 import { useState } from "react";
 
-import { NavLink,Link, Route, BrowserRouter, Routes,Navigate } from "react-router-dom";
+import {  Route, BrowserRouter, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import AboutUs from "./Components/AboutUs";
 import Navbar from './Components/UI/Navbar'
+import MovieAddForm from "./Components/MovieAddForm";
 export default function App() {
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/home" element={<Home/>} />
+          <Route path="/addMovie" element={<MovieAddForm/>} />
           {/* <Route path="/cart/:name" element={<Cart/>} /> */}
           {/* <Route path="/cart" element={<Navigate to='/'/>} /> */}
         </Routes>
