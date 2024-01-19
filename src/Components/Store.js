@@ -84,7 +84,7 @@ function Cart() {
       <div className={classes.items}>
         {productsArr.map((item) => (
           <div key={Math.random()} className={classes.child}>
-            <img className="img" src={item.imageUrl} alt={item.title}></img>
+            <img className="img" loading="lazy" src={item.imageUrl} alt={item.title}></img>
             <h3>{item.title}</h3>
             <div className={classes.btn}>
              <div> <h4>${item.price}</h4></div>
