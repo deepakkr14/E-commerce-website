@@ -18,6 +18,7 @@ const Navigation = (props) => {
         <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>
         <Nav.Link as={NavLink} to="/movies">Movies</Nav.Link>
         <Nav.Link as={NavLink} to="/addMovie">Add Movies</Nav.Link>
+        <Nav.Link as={NavLink} to="/contactUs">Contact Us</Nav.Link>
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Store</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link> */}

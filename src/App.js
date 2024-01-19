@@ -10,6 +10,7 @@ import Header from "./Components/Header";
 import AboutUs from "./Components/AboutUs";
 import Navbar from './Components/UI/Navbar'
 import MovieAddForm from "./Components/MovieAddForm";
+import ContactUs from "./Components/ContactUs";
 export default function App() {
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
@@ -38,6 +39,8 @@ export default function App() {
           <Route path="/cart" element={<Cart/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/addMovie" element={<MovieAddForm/>} />
+          <Route path="/contactUs" element={<ContactUs/>} />
+          
           {/* <Route path="/cart/:name" element={<Cart/>} /> */}
           {/* <Route path="/cart" element={<Navigate to='/'/>} /> */}
         </Routes>
