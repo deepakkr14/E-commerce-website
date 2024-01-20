@@ -14,7 +14,7 @@ const Navigation = (props) => {
         <Navbar.Brand as={NavLink} to="/home">Generic</Navbar.Brand>
         <Nav className="justify-content-center md flex-grow-1 pe-2">
         <Nav.Link as={NavLink} to="/about">About Us</Nav.Link>
-        <Nav.Link as={NavLink} to="/">Store</Nav.Link>
+        <Nav.Link as={NavLink} to="/products">Store</Nav.Link>
         <Nav.Link as={NavLink} to="/cart">Cart</Nav.Link>
         <Nav.Link as={NavLink} to="/movies">Movies</Nav.Link>
         <Nav.Link as={NavLink} to="/addMovie">Add Movies</Nav.Link>

@@ -72,7 +72,7 @@ const ContactForm = () => {
             </Form.Group>
             <Form.Group className="mb-4" controlId="formBasicPassword">
               <FloatingLabel label="Phone Number" className="mb-2">
-                <Form.Control type="number" ref={PhoneRef} />
+                <Form.Control type="tel" ref={PhoneRef} required pattern="[0-9]{10}" />
               </FloatingLabel>
             </Form.Group>
             <div className="d-flex justify-content-center">

@@ -11,6 +11,7 @@ import AboutUs from "./Components/AboutUs";
 import Navbar from './Components/UI/Navbar'
 import MovieAddForm from "./Components/MovieAddForm";
 import ContactUs from "./Components/ContactUs";
+import ProductDetail from "./Components/ProductDetail";
 export default function App() {
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
@@ -33,13 +34,14 @@ export default function App() {
         <Navbar openCart={openCart}/>
        
         <Routes>
-          <Route path="/" element={<Store/>} />
+          <Route path="/products" element={<Store/>} />
           <Route path="/movies" element={<Movies/>} />
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/addMovie" element={<MovieAddForm/>} />
           <Route path="/contactUs" element={<ContactUs/>} />
+          <Route path="/products/:name" element={<ProductDetail/>} />
           
           {/* <Route path="/cart/:name" element={<Cart/>} /> */}
           {/* <Route path="/cart" element={<Navigate to='/'/>} /> */}
