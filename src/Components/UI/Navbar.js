@@ -11,7 +11,7 @@ const Navigation = (props) => {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand as={NavLink} to="/home">Generic</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">Generic</Navbar.Brand>
         <Nav className="justify-content-center md flex-grow-1 pe-2">
         <Nav.Link as={NavLink} to="/about">About Us</Nav.Link>
         <Nav.Link as={NavLink} to="/products">Store</Nav.Link>
@@ -19,13 +19,14 @@ const Navigation = (props) => {
         <Nav.Link as={NavLink} to="/movies">Movies</Nav.Link>
         <Nav.Link as={NavLink} to="/addMovie">Add Movies</Nav.Link>
         <Nav.Link as={NavLink} to="/contactUs">Contact Us</Nav.Link>
+        <Nav.Link as={NavLink} to="/login">Log in</Nav.Link>
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Store</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link> */}
            
         </Nav>
 
-        <Button className="btn-success" onClick={props.openCart}>
+        <Button className="btn-success" as={NavLink} to="/cart">
           <i className="bi bi-cart3"><Badge bg="success">{crtctx.TotalQuantity}</Badge></i> My Cart
         </Button>
       </Container>

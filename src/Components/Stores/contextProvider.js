@@ -6,6 +6,29 @@ const ContextProvider = (props) => {
   const [StoreItems, setStoreItems] = useState([]);
   const [TotalPrice, setTotalPrice] = useState(0);
   const [Qty, setQty] = useState(0);
+  const initialToken=localStorage.getItem('token'); 
+  const [token, setToken] = useState(initialToken);
+
+
+  const userIsLoggedIn = !!token;
+  console.log(userIsLoggedIn,token)
+const loginHandler = (token) => {
+    setToken(token);
+    localStorage.setItem('token',token)
+    // window.location.href = "/profile";
+    setTimeout(()=>{
+        localStorage.removeItem('token');
+        setToken(null)
+    },30000)
+   
+  };
+
+  const logoutHandler = () => {
+    setToken(null);
+ 
+    localStorage.removeItem('token')
+    console.log('i am logout')
+  };
   const addItemToCart = (item) => {
     // IF ITEM EXIST IN THE CART
     // [ { title: "Colors",
@@ -45,6 +68,7 @@ const ContextProvider = (props) => {
     setStoreItems([...StoreItems, item]);
   };
 
+
   const finalContext = {
     CartItems: CartItems,
     TotalPrice: TotalPrice,
@@ -52,6 +76,10 @@ const ContextProvider = (props) => {
     StoreItems: StoreItems,
     AddItemsToStore: addItemToStore,
     TotalQuantity: Qty,
+    token: token,
+    isLoggedIn: userIsLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler,
   };
   return (
     <CartContext.Provider value={finalContext}>

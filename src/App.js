@@ -1,17 +1,18 @@
 import Store from "./Components/Store";
 import Cart from "./Components/Cart";
-import Home from './Components/Home'
-import Movies from './Components/Fetch'
+import Home from "./Components/Home";
+import Movies from "./Components/Fetch";
 import CartContext from "./Components/Stores/contextProvider";
 import { useState } from "react";
 
-import {  Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import AboutUs from "./Components/AboutUs";
-import Navbar from './Components/UI/Navbar'
+import Navbar from "./Components/UI/Navbar";
 import MovieAddForm from "./Components/MovieAddForm";
 import ContactUs from "./Components/ContactUs";
 import ProductDetail from "./Components/ProductDetail";
+import Login from "./Components/Login";
 export default function App() {
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
@@ -21,7 +22,7 @@ export default function App() {
     <CartContext>
       <BrowserRouter>
         {/* <Header openCart={openCart} /> */}
-       {/*  {cartOpen && <Cart />}
+        {/*  {cartOpen && <Cart />}
         {!cartOpen && <Store />} */}
         {/* <NavLink
           to="/*"
@@ -30,19 +31,20 @@ export default function App() {
           })}
         >
           Store
-        </NavLink> */} 
-        <Navbar openCart={openCart}/>
-       
+        </NavLink> */}
+        <Navbar openCart={openCart} />
+
         <Routes>
-          <Route path="/products" element={<Store/>} />
-          <Route path="/movies" element={<Movies/>} />
-          <Route path="/about" element={<AboutUs/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="/addMovie" element={<MovieAddForm/>} />
-          <Route path="/contactUs" element={<ContactUs/>} />
-          <Route path="/products/:name" element={<ProductDetail/>} />
-          
+          <Route path="/products" element={<Store />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/addMovie" element={<MovieAddForm />} />
+          <Route path="/contactUs" element={<ContactUs />} />
+          <Route path="/products/:name" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
+
           {/* <Route path="/cart/:name" element={<Cart/>} /> */}
           {/* <Route path="/cart" element={<Navigate to='/'/>} /> */}
         </Routes>

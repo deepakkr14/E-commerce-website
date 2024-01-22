@@ -5,7 +5,12 @@ const CartContext= React.createContext({
     AddItems:(name)=>{},
     StoreItems:[],
     AddItemsToStore:(name)=>{},
-    TotalQuantity:0
+    TotalQuantity:0,
+    // 
+    token: "",
+    isLoggedIn: false,
+    login: (token) => {},
+    logout: () => {},
 })
 
 

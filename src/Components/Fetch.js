@@ -17,14 +17,14 @@ const MoviesContent = () => {
       }
       const Newdata = await response.json();
       const AddedMovies = [];
-      for (const key in Newdata) {
+    if(Newdata!=null) { for (const key in Newdata) {
         AddedMovies.push({
           id: key,
           title: Newdata[key].Movie,
           director: Newdata[key].Director,
           date: Newdata[key].Date,
         });
-      }
+      }}
 
       setMovies(AddedMovies);
       setLoading(false);
@@ -76,7 +76,8 @@ const MoviesContent = () => {
   const movieList = useMemo(
     () => (
       <ul className="my-5">
-        {Movies.map((item) => (
+         {Movies.length==0 && <h2>No Movies Available</h2>}
+        {  Movies.map((item) => (
           // <div>
           <li
             key={item.id}
@@ -125,6 +126,7 @@ const MoviesContent = () => {
         <React.Fragment>
           <Container>
             <h1 className="text-center"> Movies</h1>
+          
             {movieList}
           </Container>
         </React.Fragment>
