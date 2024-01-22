@@ -46,7 +46,7 @@ const AuthForm = () => {
         if (res.ok) {
           return res.json().then((data) => {
             console.log(data.idToken);
-            authctx.login(data.idToken);
+            authctx.login(data.idToken,enteredEmail);
             Navigate('/products');
           });
         } else {

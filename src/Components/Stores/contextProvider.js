@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 import CartContext from "./cartContext";
 const ContextProvider = (props) => {
@@ -8,21 +8,36 @@ const ContextProvider = (props) => {
   const [Qty, setQty] = useState(0);
   const initialToken=localStorage.getItem('token'); 
   const [token, setToken] = useState(initialToken);
-
+const [Email,setEmail]=useState('')
 
   const userIsLoggedIn = !!token;
   console.log(userIsLoggedIn,token)
-const loginHandler = (token) => {
+const loginHandler = (token,email) => {
     setToken(token);
+    setEmail(email);
     localStorage.setItem('token',token)
     // window.location.href = "/profile";
     setTimeout(()=>{
         localStorage.removeItem('token');
         setToken(null)
     },30000)
-   
+    
   };
-
+  const convertedMail=Email.replace(/[^a-zA-Z0-9]/g, "");
+   useEffect(() => {
+      fetch(`https://crudcrud.com/api/46717aaea5b1459690fc3d22aaa3f90e/cart${convertedMail}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          // console.log(typeof data[0].UpdatedAmount);
+          // return cartctx.addItem(
+         
+              setCartItems(data)
+              // return ;
+            
+          // );
+        });
+    }, []);
   const logoutHandler = () => {
     setToken(null);
  
@@ -35,6 +50,16 @@ const loginHandler = (token) => {
     //     price: 100,
     //     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
     //     quantity: 2, }, ];
+    fetch(`https://crudcrud.com/api/46717aaea5b1459690fc3d22aaa3f90e/cart${convertedMail}`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+        },
+        body:JSON.stringify({product_id: item.id })
+        
+    } ) .then((res) => res.json())
+        .then((data) => console.log(data));
+    
     const finditemIndex = CartItems.findIndex(
       (each) => each.item.title === item.title
     );
