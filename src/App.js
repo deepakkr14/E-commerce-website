@@ -2,10 +2,9 @@ import Store from "./Components/Store";
 import Cart from "./Components/Cart";
 import Home from "./Components/Home";
 import Movies from "./Components/Fetch";
-import CartContext from "./Components/Stores/contextProvider";
-import { useState } from "react";
-
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { useState,useContext } from "react";
+import  context from './Components/Stores/cartContext'
+import { Route, BrowserRouter, Routes ,Navigate} from "react-router-dom";
 import Header from "./Components/Header";
 import AboutUs from "./Components/AboutUs";
 import Navbar from "./Components/UI/Navbar";
@@ -14,12 +13,13 @@ import ContactUs from "./Components/ContactUs";
 import ProductDetail from "./Components/ProductDetail";
 import Login from "./Components/Login";
 export default function App() {
+  const contxt =useContext(context)
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
     setcartOpen((prev) => !prev);
   };
   return (
-    <CartContext>
+   
       <BrowserRouter>
         {/* <Header openCart={openCart} /> */}
         {/*  {cartOpen && <Cart />}
@@ -35,7 +35,7 @@ export default function App() {
         <Navbar openCart={openCart} />
 
         <Routes>
-          <Route path="/products" element={<Store />} />
+          <Route path="/products" element={contxt.isLoggedIn ? <Store /> : <Navigate to="/login" replace />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />
@@ -52,6 +52,6 @@ export default function App() {
         {/* <Cart/> */}
         {/* <AboutUs /> */}
       </BrowserRouter>
-    </CartContext>
+  
   );
 }

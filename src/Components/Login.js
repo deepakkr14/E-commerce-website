@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import AuthContext from "./Stores/cartContext";
 import classes from "./AuthForm.module.css";
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 const AuthForm = () => {
   const Navigate = useNavigate();
   const emailInputRef = useRef();
