@@ -16,7 +16,7 @@ const loginHandler = (token,email) => {
     setToken(token);
     setEmail(email);
     localStorage.setItem('token',token)
-    // window.location.href = "/profile";
+
     setTimeout(()=>{
         localStorage.removeItem('token');
         setToken(null)
@@ -55,7 +55,7 @@ const loginHandler = (token,email) => {
       headers:{
         'Content-Type':'application/json'
         },
-        body:JSON.stringify({product_id: item.id })
+        body:JSON.stringify({item:item})
         
     } ) .then((res) => res.json())
         .then((data) => console.log(data));

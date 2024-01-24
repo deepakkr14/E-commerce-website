@@ -1,41 +1,36 @@
-import Store from "./Components/Store";
-import Cart from "./Components/Cart";
-import Home from "./Components/Home";
-import Movies from "./Components/Fetch";
-import { useState,useContext } from "react";
-import  context from './Components/Stores/cartContext'
-import { Route, BrowserRouter, Routes ,Navigate} from "react-router-dom";
-import Header from "./Components/Header";
-import AboutUs from "./Components/AboutUs";
+import { useState, useContext, lazy, Suspense } from "react";
+import context from "./Components/Stores/cartContext";
+
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
+
 import Navbar from "./Components/UI/Navbar";
-import MovieAddForm from "./Components/MovieAddForm";
-import ContactUs from "./Components/ContactUs";
-import ProductDetail from "./Components/ProductDetail";
-import Login from "./Components/Login";
+const Login = lazy(() => import("./Components/Login"));
+const Store = lazy(() => import("./Components/Store"));
+const ProductDetail = lazy(() => import("./Components/ProductDetail"));
+const ContactUs = lazy(() => import("./Components/ContactUs"));
+const Cart = lazy(() => import("./Components/Cart"));
+const Home = lazy(() => import("./Components/Home"));
+const Movies = lazy(() => import("./Components/Fetch"));
+const AboutUs = lazy(() => import("./Components/AboutUs"));
+const MovieAddForm = lazy(() => import("./Components/MovieAddForm"));
+
 export default function App() {
-  const contxt =useContext(context)
+  const contxt = useContext(context);
   const [cartOpen, setcartOpen] = useState(true);
   const openCart = () => {
     setcartOpen((prev) => !prev);
   };
   return (
-   
-      <BrowserRouter>
-        {/* <Header openCart={openCart} /> */}
-        {/*  {cartOpen && <Cart />}
-        {!cartOpen && <Store />} */}
-        {/* <NavLink
-          to="/*"
-          style={({ isActive }) => ({
-            color: isActive ? "greenyellow" : "white",
-          })}
-        >
-          Store
-        </NavLink> */}
-        <Navbar openCart={openCart} />
-
+    <BrowserRouter>
+      <Navbar openCart={openCart} />
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/products" element={contxt.isLoggedIn ? <Store /> : <Navigate to="/login" replace />} />
+          <Route
+            path="/products"
+            element={
+              contxt.isLoggedIn ? <Store /> : <Navigate to="/login" replace />
+            }
+          />
           <Route path="/movies" element={<Movies />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />
@@ -44,14 +39,8 @@ export default function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/products/:name" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
-
-          {/* <Route path="/cart/:name" element={<Cart/>} /> */}
-          {/* <Route path="/cart" element={<Navigate to='/'/>} /> */}
         </Routes>
-        {/* <Store/> */}
-        {/* <Cart/> */}
-        {/* <AboutUs /> */}
-      </BrowserRouter>
-  
+      </Suspense>
+    </BrowserRouter>
   );
 }

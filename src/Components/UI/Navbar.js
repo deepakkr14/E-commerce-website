@@ -9,8 +9,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const Navigation = (props) => {
   const crtctx=useContext(CartContext)
   return (
-    <Navbar bg="dark" data-bs-theme="dark">
-      <Container>
+    <Navbar bg="dark" data-bs-theme="dark" >
+      <Container >
         <Navbar.Brand as={NavLink} to="/">Generic</Navbar.Brand>
         <Nav className="justify-content-center md flex-grow-1 pe-2">
         <Nav.Link as={NavLink} to="/about">About Us</Nav.Link>
